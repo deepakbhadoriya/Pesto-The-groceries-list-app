@@ -23,11 +23,11 @@ const isUserLoggedIn = () => {
 const loginUser = (event) => {
   event.preventDefault();
   const userName = document.getElementById("userNameField").value;
-  if (!getUserData(userName)) {
+  localStorage.setItem("currentUser", userName);
+  if (!getUserData()) {
     appData.length > 2 && appData.pop();
     appData.unshift({ userName: userName, groceryItems: [] });
   }
-  localStorage.setItem("currentUser", userName);
   localStorage.setItem("appData", JSON.stringify(appData));
   isUserLoggedIn();
   document.getElementById("userNameField").value = "";
